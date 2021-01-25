@@ -35,18 +35,6 @@ public class InitialSetUp {
     
     static DesiredCapabilities capabilities = new DesiredCapabilities();
     
-	/*
-	 * protected static String platformName = propertyFile.getProperty("platform");
-	 * protected static String environment =
-	 * propertyFile.getProperty("environment"); protected static String appName =
-	 * propertyFile.getProperty("app_Name"); protected static String deviceName =
-	 * propertyFile.getProperty("deviceName"); public static String platform_Name =
-	 * propertyFile.getProperty("platform"); public static String app_Name =
-	 * propertyFile.getProperty("app_Name"); public static String platformVersion =
-	 * propertyFile.getProperty("platformVersion"); public static String device_Name
-	 * = propertyFile.getProperty("deviceName");
-	 */
-
     
     public static void initializationAppium() {
 		
@@ -54,8 +42,8 @@ public class InitialSetUp {
 		  DesiredCapabilities capabilities = new DesiredCapabilities();
 		  System.out.println("URL = "+propertyFile.getProperty("mktp_URL"));
 		  capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-		  capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
-		  capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "c372d4c6");
+		  capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, GlobalVariables.platformVersion);
+		  capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, GlobalVariables.deviceName);
 		  capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,MobileBrowserType.CHROME);
 		  capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
 		  capabilities.setCapability("unicodeKeyboard", true);
@@ -64,7 +52,7 @@ public class InitialSetUp {
 		  //capabilities.setCapability("app-activity", "com.google.android.apps.chrome.main");
 		  capabilities.setCapability("chromedriverExecutable", System.getProperty("user.dir")+"/testdata/chromedriver.exe");
 		  try {
-			  driver= new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities); 
+			  driver= new RemoteWebDriver(new URL("http://"+GlobalVariables.appiumURL),capabilities); 
 			  driver.get("https://www.kotakcherry.com/"); 
 		  } catch(MalformedURLException e) 
 		  { // TODO Auto-generated catch block

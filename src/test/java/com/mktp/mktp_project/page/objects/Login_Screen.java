@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.mktp.mktp_project.prerequisites.GlobalVariables;
 import com.mktp.mktp_project.prerequisites.InitialSetUp;
 
 
@@ -25,8 +26,14 @@ public class Login_Screen extends InitialSetUp{
 	
 	public static WebElement register()
 	{
-		//element =  (WebElement)InitialSetUp.driver.findElement(By.xpath("//*[contains(text(),'Register')]"));
-		element = (WebElement) InitialSetUp.driver.findElement(By.xpath("/html/body/ieco-root/div/div[2]/ieco-main/div/div[2]/div[1]/ieco-login/div/section/div/div/form/div[7]/div/div[2]/a/button"));
+		if(GlobalVariables.platform =="Android" || GlobalVariables.deviceName!=null)
+		{
+			element = (WebElement) InitialSetUp.driver.findElement(By.xpath("/html/body/ieco-root/div/div[2]/ieco-main/div/div[2]/div[1]/ieco-login/div/section/div/div/form/div[7]/div/div[2]/a/button"));
+		}
+		else
+		{
+			element =  (WebElement)InitialSetUp.driver.findElement(By.xpath("//*[contains(text(),'Register')]"));
+		}
 																		   
 		return element;
 	}
@@ -148,7 +155,7 @@ public class Login_Screen extends InitialSetUp{
 	
 	public static WebElement SigninEmailValidationError()
 	{
-		element = (WebElement) InitialSetUp.driver.findElement(By.xpath("//*[@id=\"mat-error-13\"]"));
+		element = (WebElement) InitialSetUp.driver.findElement(By.xpath("//*[@id=\"mat-error-1\"]"));
 		return element;
 	}
 	

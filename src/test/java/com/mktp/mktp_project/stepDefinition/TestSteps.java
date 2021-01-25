@@ -9,14 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import com.aventstack.extentreports.gherkin.model.ScenarioOutline;
 import com.mktp.mktp_project.page.objects.Login_Screen;
+import com.mktp.mktp_project.prerequisites.GlobalVariables;
 import com.mktp.mktp_project.prerequisites.InitialSetUp;
 import com.mktp.mktp_project.utilities.FunctionLibrary;
 
 import cucumber.api.java.en.Given;
-import gherkin.formatter.model.Examples;
-import gherkin.formatter.model.ExamplesTableRow;
 
 public class TestSteps extends InitialSetUp {
 
@@ -29,8 +27,14 @@ public class TestSteps extends InitialSetUp {
 
 	@Given("^user launch login web page$")
 	public void user_launch_login_web_page() throws Throwable {
-		//InitialSetUp.initializeWebdriver();
-		InitialSetUp.initializationAppium();
+		if(GlobalVariables.platform== "Android" || GlobalVariables.deviceName!=null)
+		{
+			InitialSetUp.initializationAppium();
+		}
+		else
+		{
+			InitialSetUp.initializeWebdriver();	
+		}
 		WebDriverWait wait = new WebDriverWait(driver,120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Sign in to your account')]")));
 		//LoginLibrary.AdminLogin();
@@ -170,7 +174,19 @@ public class TestSteps extends InitialSetUp {
 		//Login_Screen.SigninValidationforAttemp().isDisplayed();
 	}
 	
+	@Given("^user verify email id validation error$")
+	public void user_verify_email_id_validation_error() throws Throwable {
+		Thread.sleep(1000);
+		Login_Screen.SigninEmailValidationError().isDisplayed();
+		String email_valiadation_error=Login_Screen.SigninEmailValidationError().getText();
+		Assert.assertEquals(email_valiadation_error, "Please enter a valid Email Id");
+	}
 	
+	@Given("^user close the browser$")
+	public void user_close_the_browser() throws Throwable {
+		Thread.sleep(1000);
+		driver.quit();
+	}
 	
 	
 	
