@@ -3,12 +3,11 @@
 <suite name="AndroidWebRunner" parallel="classes" thread-count="2" preserve-order="false" verbose="3">
 	<test name="Test2">
 		<parameter name="deviceName_" value="c372d4c6" />
-		<parameter name="UDID_" value="UDID_Two" />
-		<parameter name="platformVersion_" value="6.0.0" />
-		<parameter name="URL_" value="0.0.0.0:4728/wd/hub"/>
+		<parameter name="platformVersion_" value="7.1" />
+		<parameter name="URL_" value="0.0.0.0:4723/wd/hub"/>
 		<parameter name="report.config" value="resources/extent-config.xml" />
 		<classes>
-		<class name="teno.com.cucumber.testRunner.AndroidWebRunner"/>
+		<class name="com.mktp.mktp_project.testRunner.AndroidWebRunner"/>
 		</classes>
 	</test> <!--Test 2 -->
 </suite> <!-- Suite -->
